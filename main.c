@@ -3,9 +3,9 @@
 #include <pthread.h>
 #include <time.h>
 #include <math.h>
-#define TOTAL_CITIES 10
+#define TOTAL_CITIES 75
 #define MAX_DISTANCE 15
-#define POPULATION_SIZE 5
+#define POPULATION_SIZE 50
 #define TOTAL_GENERATIONS 50
 #define MUTATION_RATE 0.5
 #define TRUE 1
@@ -193,37 +193,6 @@ void printBestSolution(struct Population *population) {
 
 }
 
-int main() {
-    srand(time(NULL));
-    clock_gettime(CLOCK_MONOTONIC, &begin);
-    //Codigo vai aqui
-
-    initializaDistances();
-    printMatrix(distances);
-    /*//Testing createRandomChromossome, printChromossome, and fitness;
-    struct Sample random = createRandomSample();
-    printSample(&random);
-    fitness(&random);*/
-
-    /*//Testing crossover
-     struct Sample parent1 = createRandomChromossome();
-     struct Sample parent2 = createRandomSample();
-     printf("\n Parent1");
-     printChromossome(&parent1);
-     printf("\n Parent2");
-     printChromossome(&parent2);
-     struct Sample child1 = crossover(&parent1, &parent2);
-     printf("\n Child");
-     printSample(&child1);*/
-    //TEMPO eh calculado daqui pra baixo
-    clock_gettime(CLOCK_MONOTONIC, &end);
-
-    gaSolve();
-    double timeSpent = end.tv_sec - begin.tv_sec;
-    timeSpent += (end.tv_nsec - begin.tv_nsec) / 1000000000.0;
-    printf("\nTime spent: %.10lf seconds.\n", timeSpent);
-    return 0;
-}
 
 void gaSolve() {
     struct Population generations[TOTAL_GENERATIONS];
@@ -300,3 +269,36 @@ void gaSolve() {
 }
 
 
+
+
+int main() {
+    srand(time(NULL));
+    clock_gettime(CLOCK_MONOTONIC, &begin);
+    //Codigo vai aqui
+
+    initializaDistances();
+    printMatrix(distances);
+    /*//Testing createRandomChromossome, printChromossome, and fitness;
+    struct Sample random = createRandomSample();
+    printSample(&random);
+    fitness(&random);*/
+
+    /*//Testing crossover
+     struct Sample parent1 = createRandomChromossome();
+     struct Sample parent2 = createRandomSample();
+     printf("\n Parent1");
+     printChromossome(&parent1);
+     printf("\n Parent2");
+     printChromossome(&parent2);
+     struct Sample child1 = crossover(&parent1, &parent2);
+     printf("\n Child");
+     printSample(&child1);*/
+    //TEMPO eh calculado daqui pra baixo
+    gaSolve();
+    clock_gettime(CLOCK_MONOTONIC, &end);
+
+    double timeSpent = end.tv_sec - begin.tv_sec;
+    timeSpent += (end.tv_nsec - begin.tv_nsec) / 1000000000.0;
+    printf("\nTime spent: %.10lf seconds.\n", timeSpent);
+    return 0;
+}
