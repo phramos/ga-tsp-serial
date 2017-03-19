@@ -235,8 +235,6 @@ void gaSolve() {
         generations[0].samples[i] = createRandomSample();
     }
 
-//    printPopulation(&generations[0]);
-    printBestSolution(&generations[0]);
     for (int j = 1; j < TOTAL_GENERATIONS; ++j) {
         long parent1Position = randomAtMost(POPULATION_SIZE-1);
         long parent2Position = randomAtMost(POPULATION_SIZE-1);
@@ -290,10 +288,14 @@ void gaSolve() {
         generations[j].samples[parent2Position] = newGen2;
 
 //        printPopulation(&generations[j]);
-        printBestSolution(&generations[j]);
         printf("END");
     }
 
+    for (long l = 0; l < TOTAL_GENERATIONS; ++l) {
+        printf("\n\n ----------GENERATION %ld----------", l);
+        printBestSolution(&generations[l]);
+
+    }
 
 }
 
